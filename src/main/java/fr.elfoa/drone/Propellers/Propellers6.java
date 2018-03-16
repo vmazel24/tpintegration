@@ -1,13 +1,15 @@
-package fr.elfoa.drone;
+package fr.elfoa.drone.Propellers;
+
+import fr.elfoa.drone.Annotations.PropellersNumber;
+import fr.elfoa.drone.Annotations.PropellersType;
+import fr.elfoa.drone.Battery.Battery;
+import fr.elfoa.drone.ConsumptionCalculator;
 
 import javax.inject.Inject;
 
-/**
- * @author Pierre Colomb
- */
-public class Propellers {
-
-    private Integer number = 4;
+@PropellersType(PropellersNumber.SIX)
+public class Propellers6 implements IPropellers{
+    private Integer number = 6;
 
     @Inject
     private Battery battery;
@@ -18,7 +20,7 @@ public class Propellers {
     private Boolean isRunning = false;
 
     @Inject
-    public Propellers(){}
+    public Propellers6(){}
 
 
     public void start(){

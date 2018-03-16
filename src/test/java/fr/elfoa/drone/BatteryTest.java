@@ -1,5 +1,6 @@
 package fr.elfoa.drone;
 
+import fr.elfoa.drone.Battery.Battery;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

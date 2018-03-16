@@ -12,12 +12,12 @@ public class ConsumptionCalculator {
     {
     }
 
-    Integer getConsumption(Integer propeller){
+    public Integer getConsumption(Integer propeller){
         return 0;
     }
 
 
-    Integer getConsumption(Double distance,Direction direction,Integer weight){
+    public Integer getConsumption(Double distance,Direction direction,Integer weight){
         return 0;
     }
 

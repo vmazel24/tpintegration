@@ -77,4 +77,6 @@ public class DroneTest  extends AbstractBootstraper
         assertEquals(expected, drone.getCurrentPosition());
     }
 
+
+
 }

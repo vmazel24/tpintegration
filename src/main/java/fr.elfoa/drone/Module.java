@@ -5,8 +5,11 @@ package fr.elfoa.drone;
  */
 public class Module {
 
-    private Integer power = 100;
+    private Integer power;
 
+    public Module(Integer power){
+        this.power = power;
+    }
 
     public void use(Integer power){
         this.power -= power;
