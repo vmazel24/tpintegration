@@ -1,5 +1,7 @@
 package fr.elfoa.drone;
 
+import javax.annotation.ManagedBean;
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +14,7 @@ public class Battery {
 
     private List<Module> modules = new ArrayList<>();
 
-
+    @Inject
     public Battery(){
         modules = Arrays.asList(new Module(),
                                 new Module(),

@@ -10,27 +10,25 @@ import java.util.List;
  */
 public class Drone {
 
-    //@Inject
+    @Inject
     private Battery battery;
 
-    //@Inject
+    @Inject
     private Propellers propellers;
 
     private List<Container> containers;
 
-    private ConsumptionCalculator consumptionCalculator = new ConsumptionCalculator();
+    @Inject
+    private ConsumptionCalculator consumptionCalculator;
 
     private Point current;
 
     private Boolean isFlying;
 
-
-    public Drone(Point current){
+    @Inject
+    public Drone(Point point){
         this.containers = new ArrayList<>();
-        this.current = current;
-        this.battery = new Battery();
-        this.containers = new ArrayList<>();
-        this.propellers = new Propellers(battery);
+        current = point;
 
         if(current.getAltitude() != 0){
             throw new IllegalArgumentException();
@@ -38,65 +36,72 @@ public class Drone {
 
     }
 
-    public void tackOff(){
+    public void tackOff()
+    {
 
-        if(!isCanFly()){
+        if (!isCanFly())
+        {
             return;
         }
 
         Integer weight = containers.stream()
-                                   .mapToInt(Container::getWeight)
-                                   .sum();
+                .mapToInt(Container::getWeight)
+                .sum();
 
         propellers.start();
 
-        battery.use(consumptionCalculator.getConsumption(50d,Direction.VERTICAL,weight));
+        battery.use(consumptionCalculator.getConsumption(50d, Direction.VERTICAL, weight));
 
-        current = new Point(current.getLatitude(),current.getLongitude(),50d);
+        current = new Point(current.getLatitude(), current.getLongitude(), 50d);
 
         isFlying = true;
 
     }
 
-    public void flyTo(Point point){
+    public void flyTo(Point point)
+    {
 
-        if(!isFlying){
+        if (!isFlying)
+        {
             throw new IllegalStateException();
         }
 
         double distance = point.distanceTo(current);
 
         Integer weight = containers.stream()
-                                   .mapToInt(Container::getWeight)
-                                   .sum();
+                .mapToInt(Container::getWeight)
+                .sum();
 
-        battery.use(consumptionCalculator.getConsumption(distance,Direction.HORIZONTAL,weight));
+        battery.use(consumptionCalculator.getConsumption(distance, Direction.HORIZONTAL, weight));
 
         current = point;
     }
 
-    public void landing(){
+    public void landing()
+    {
 
         Integer weight = containers.stream()
-                                   .mapToInt(Container::getWeight)
-                                   .sum();
+                .mapToInt(Container::getWeight)
+                .sum();
 
-        battery.use(consumptionCalculator.getConsumption(50d,Direction.VERTICAL,weight));
+        battery.use(consumptionCalculator.getConsumption(50d, Direction.VERTICAL, weight));
 
-        current = new Point(current.getLatitude(),current.getLongitude(),0d);
+        current = new Point(current.getLatitude(), current.getLongitude(), 0d);
 
         propellers.stop();
     }
 
-    public boolean isCanFly(){
+    public boolean isCanFly()
+    {
         Integer weight = containers.stream()
-                                   .mapToInt(Container::getWeight)
-                                   .sum();
+                .mapToInt(Container::getWeight)
+                .sum();
 
         return weight == 0 || (weight / propellers.getNumberOfPropelle() * 5) != 0;
     }
 
-    public Point getCurrentPosition(){
+    public Point getCurrentPosition()
+    {
         return current;
     }
 }

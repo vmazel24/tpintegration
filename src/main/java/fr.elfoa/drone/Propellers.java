@@ -1,5 +1,7 @@
 package fr.elfoa.drone;
 
+import javax.inject.Inject;
+
 /**
  * @author Pierre Colomb
  */
@@ -7,15 +9,17 @@ public class Propellers {
 
     private Integer number = 4;
 
+    @Inject
     private Battery battery;
 
-    private ConsumptionCalculator calculator = new ConsumptionCalculator();
+    @Inject
+    private ConsumptionCalculator calculator;
 
     private Boolean isRunning = false;
 
-    public Propellers(Battery battery){
-        this.battery = battery;
-    }
+    @Inject
+    public Propellers(){}
+
 
     public void start(){
         battery.use(calculator.getConsumption(number));
@@ -26,6 +30,9 @@ public class Propellers {
         isRunning = false;
     }
 
+    public void setBattery(Battery battery){
+        this.battery = battery;
+    }
 
     public Integer getNumberOfPropelle() {
         return number;
