@@ -1,5 +1,7 @@
 package fr.elfoa.drone.Propellers;
 
+import fr.elfoa.drone.Annotations.BatteryType;
+import fr.elfoa.drone.Annotations.ModuleType;
 import fr.elfoa.drone.Annotations.PropellersNumber;
 import fr.elfoa.drone.Annotations.PropellersType;
 import fr.elfoa.drone.Battery.Battery;
@@ -16,6 +18,7 @@ public class Propellers4 implements IPropellers{
     private Integer number = 4;
 
     @Inject
+    @BatteryType(ModuleType.STANDARD)
     private Battery battery;
 
     @Inject

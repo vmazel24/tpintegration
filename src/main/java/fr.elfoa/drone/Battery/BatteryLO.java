@@ -4,11 +4,13 @@ import fr.elfoa.drone.Annotations.BatteryType;
 import fr.elfoa.drone.Annotations.ModuleType;
 import fr.elfoa.drone.Module;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@ApplicationScoped
 @BatteryType(ModuleType.LITHIUM_OXYGEN)
 public class BatteryLO implements IBattery{
     private List<Module> modules = new ArrayList<>();

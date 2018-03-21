@@ -5,6 +5,7 @@ import fr.elfoa.drone.Annotations.ModuleType;
 import fr.elfoa.drone.Module;
 
 import javax.annotation.ManagedBean;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * @author Pierre Colomb
  */
+@ApplicationScoped
 @BatteryType(ModuleType.STANDARD)
 public class Battery implements IBattery{
 
