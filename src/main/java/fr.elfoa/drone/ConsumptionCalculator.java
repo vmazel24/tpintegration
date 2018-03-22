@@ -1,5 +1,6 @@
 package fr.elfoa.drone;
 
+import fr.elfoa.drone.Propellers.IPropellers;
 import javax.inject.Inject;
 
 import javax.persistence.Entity;
@@ -16,12 +17,12 @@ public class ConsumptionCalculator {
     {
     }
     @OneToOne
-    private Propellers propellers;
+    private IPropellers propellers;
 
     @OneToOne
     private Drone drone;
 
-    Integer getConsumption(Integer propeller){
+    public Integer getConsumption(Integer propeller){
         return 0;
     }
 

@@ -72,3 +72,9 @@ crashlytics-build.properties
 fabric.properties
 
 TPFinal\.iml
+
+target/
+
+\.idea/
+
+*.iml

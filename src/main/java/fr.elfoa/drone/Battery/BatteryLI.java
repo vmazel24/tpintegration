@@ -9,10 +9,14 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @ApplicationScoped
 @BatteryType(ModuleType.LITHIUM_ION)
+@Entity
 public class BatteryLI implements IBattery{
+    @OneToMany(mappedBy = "battery")
     private List<Module> modules = new ArrayList<>();
 
     @Inject

@@ -8,22 +8,31 @@ import fr.elfoa.drone.Battery.Battery;
 import fr.elfoa.drone.ConsumptionCalculator;
 
 import javax.inject.Inject;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  * @author Pierre Colomb
  */
 @PropellersType(PropellersNumber.FOUR)
+@Entity
 public class Propellers4 implements IPropellers{
 
+    @Column
     private Integer number = 4;
 
     @Inject
     @BatteryType(ModuleType.STANDARD)
+    @ManyToOne
     private Battery battery;
 
     @Inject
+    @OneToOne(mappedBy = "propellers")
     private ConsumptionCalculator calculator;
 
+    @Column
     private Boolean isRunning = false;
 
     @Inject

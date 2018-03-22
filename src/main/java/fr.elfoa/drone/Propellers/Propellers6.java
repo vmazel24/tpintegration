@@ -5,21 +5,31 @@ import fr.elfoa.drone.Annotations.ModuleType;
 import fr.elfoa.drone.Annotations.PropellersNumber;
 import fr.elfoa.drone.Annotations.PropellersType;
 import fr.elfoa.drone.Battery.Battery;
+import fr.elfoa.drone.Battery.IBattery;
 import fr.elfoa.drone.ConsumptionCalculator;
 
 import javax.inject.Inject;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @PropellersType(PropellersNumber.SIX)
+@Entity
 public class Propellers6 implements IPropellers{
+    @Column
     private Integer number = 6;
 
     @Inject
     @BatteryType(ModuleType.STANDARD)
-    private Battery battery;
+    @ManyToOne
+    private IBattery battery;
 
     @Inject
+    @OneToOne(mappedBy = "propellers")
     private ConsumptionCalculator calculator;
 
+    @Column
     private Boolean isRunning = false;
 
     @Inject

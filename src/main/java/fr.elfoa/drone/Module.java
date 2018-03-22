@@ -1,5 +1,7 @@
 package fr.elfoa.drone;
 
+import fr.elfoa.drone.Battery.Battery;
+import fr.elfoa.drone.Battery.IBattery;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -11,11 +13,16 @@ import javax.persistence.ManyToOne;
 public class Module {
 
     @Column
-    private Integer power = 100;
+    private Integer power;
 
     @ManyToOne
-    private Battery battery;
-    
+    private IBattery battery;
+
+    public Module()
+    {
+
+    }
+
     public Module(Integer power){
         this.power = power;
     }

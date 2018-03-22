@@ -10,7 +10,8 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  * @author Pierre Colomb
@@ -19,6 +20,7 @@ import java.util.List;
 @BatteryType(ModuleType.STANDARD)
 public class Battery implements IBattery{
 
+    @OneToMany(mappedBy = "battery")
     private List<Module> modules = new ArrayList<>();
 
     @Inject
