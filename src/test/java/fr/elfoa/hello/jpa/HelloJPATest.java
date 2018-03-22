@@ -2,6 +2,7 @@ package fr.elfoa.hello.jpa;
 
 
 
+import javax.persistence.ForeignKey;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -131,6 +132,52 @@ public class HelloJPATest {
         Assert.assertEquals("B2-1000",b.getB_2());
 
 
+    }
+
+    //Transiant null
+    @Test
+    public void test6(){
+        D d = em.find(D.class, 1000);
+
+        Assert.assertEquals(1000, d.getId().intValue());
+        Assert.assertEquals("D1-1000", d.getD_1());
+        Assert.assertEquals(null, d.getD_4());
+    }
+
+    //OneToMany
+    @Test
+    public void test7(){
+        E e = em.find(E.class, 1000);
+
+        Assert.assertEquals(1000, e.getId().intValue());
+        Assert.assertEquals(1,e.getE_A().size());
+        Assert.assertEquals("A1-1002",e.getE_A().get(0).getA_1());
+    }
+
+    //ManyToMany + Good Practice
+    @Test
+    public void test8(){
+        C C0 = em.find(C.class, 1000);
+        C C1 = em.find(C.class, 1001);
+        C C2 = em.find(C.class, 1002);
+        C C3 = em.find(C.class, 1003);
+
+        D D0 = em.find(D.class, 1000);
+        D D1 = em.find(D.class, 1001);
+        D D2 = em.find(D.class, 1002);
+
+        C_D c_d = em.find(C_D.class, 1000);
+
+        //C side
+        Assert.assertEquals(2, C0.getC_d().getDs().size());
+        Assert.assertEquals(1, C1.getC_d().getDs().size());
+        Assert.assertEquals(3, C2.getC_d().getDs().size());
+        Assert.assertEquals(0, C3.getC_d().getDs().size());
+
+        //D side
+        Assert.assertEquals(2, D0.getC_d().getCs().size());
+        Assert.assertEquals(2, D1.getC_d().getCs().size());
+        Assert.assertEquals(2, D2.getC_d().getCs().size());
     }
 
 }

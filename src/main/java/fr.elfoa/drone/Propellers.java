@@ -1,16 +1,25 @@
 package fr.elfoa.drone;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+
 /**
  * @author Pierre Colomb
  */
+@Entity
 public class Propellers {
 
+    @Column
     private Integer number = 4;
 
+    @OneToOne(mappedBy = "propellers")
     private Battery battery;
 
+    @OneToOne(mappedBy = "propellers")
     private ConsumptionCalculator calculator = new ConsumptionCalculator();
 
+    @Column
     private Boolean isRunning = false;
 
     public Propellers(Battery battery){

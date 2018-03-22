@@ -1,14 +1,25 @@
 package fr.elfoa.drone;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+
 /**
  * @author Pierre Colomb
  */
+@Entity
 public class Point {
 
+    @OneToOne(mappedBy = "drone")
+    private Drone drone;
+
+    @Column
     private Double latitude;
 
+    @Column
     private Double longitude;
 
+    @Column
     private Double altitude;
 
 

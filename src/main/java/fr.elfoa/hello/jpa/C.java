@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Objects;
+import javax.persistence.ManyToOne;
 
 /**
  * @author Pierre Colomb
@@ -19,6 +20,8 @@ public class C {
 
     private String c_2;
 
+    @ManyToOne
+    private C_D c_d;
 
     public C(){
     }
@@ -64,7 +67,13 @@ public class C {
         this.c_2 = c_2;
     }
 
+    public C_D getC_d() {
+        return c_d;
+    }
 
+    public void setC_d(C_D c_d) {
+        this.c_d = c_d;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -3,13 +3,20 @@ package fr.elfoa.drone;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  * @author Pierre Colomb
  */
+@Entity
 public class Battery {
 
+    @OneToOne
+    private Propellers propellers;
+
+    @OneToMany(mappedBy = "battery")
     private List<Module> modules = new ArrayList<>();
 
 
