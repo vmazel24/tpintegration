@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Objects;
+import javax.persistence.ManyToOne;
 
 /**
  * @author Pierre Colomb
@@ -18,6 +19,9 @@ public class A {
     private String a_1;
 
     private String a_2;
+
+    @ManyToOne
+    private E e;
 
     public A(){}
 

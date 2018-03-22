@@ -7,28 +7,42 @@ import fr.elfoa.drone.Propellers.Propellers4;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  * @author Pierre Colomb
  */
+@Entity
 public class Drone {
 
     @Inject
+    @ManyToOne
     @BatteryType(ModuleType.STANDARD)
     private IBattery battery;
+    
 
     @Inject
     @PropellersType(PropellersNumber.FOUR)
+    @ManyToOne
     private Propellers4 propellers;
+    
 
+    @OneToMany
     private List<Container> containers;
 
     @Inject
+    @OneToOne(mappedBy = "drone")
     private ConsumptionCalculator consumptionCalculator;
+   
 
+    @OneToOne
     private Point current;
 
+    @Column
     private Boolean isFlying;
 
     @Inject
